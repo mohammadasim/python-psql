@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String
 from database import get_connection
 from sqlalchemy.orm import sessionmaker
 
+
 Base = declarative_base()
 
 class User:
@@ -33,6 +34,12 @@ class User:
         session = User.create_db_session()
         session.add(self)
         session.commit()
+
+    @classmethod
+    def find_by_email(cls, email):
+        session = User.create_db_session()
+        query = session.query()
+        return query.filter_by(email=email).first()
 
 
 
