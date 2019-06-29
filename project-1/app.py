@@ -1,5 +1,8 @@
 from car import Car
 from user import User
 
-new_user = User.find_by_email('asimayub81@gmail.com')
-print(new_user)
+car = Car.find_by_model('sharan')
+print(car)
+
+user = User.find_by_email('moezayub@gmail.com')
+print(user)

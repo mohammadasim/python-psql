@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/mayub/PycharmProjects/intro-to-databases/venv"
+set -gx VIRTUAL_ENV "/Users/mohammad.ayub/python-projects/python-psql/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

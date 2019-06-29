@@ -1,12 +1,9 @@
-from sqlalchemy.ext.declarative import declarative_base
+from database import session_factory
 from sqlalchemy import Column, Integer, String
-from database import get_connection
-from sqlalchemy.orm import sessionmaker
+from database import Base
 
 
-Base = declarative_base()
-
-class User:
+class User(Base):
     def __init__(self, email, first_name, last_name):
         self.email = email
         self.first_name = first_name
@@ -18,28 +15,16 @@ class User:
     first_name = Column(String)
     last_name = Column(String)
 
-
     def __repr__(self):
         return "<User {}>".format(self.email)
 
-    @staticmethod
-    def create_db_session():
-        db = get_connection('postgres', 'password123', 'app')
-        Base.metadata.create_all(db)
-        new_session = sessionmaker(db)
-        generate_session = new_session()
-        return generate_session
-
     def save_to_db(self):
-        session = User.create_db_session()
+        session = session_factory()
         session.add(self)
         session.commit()
 
     @classmethod
     def find_by_email(cls, email):
-        session = User.create_db_session()
-        query = session.query()
-        return query.filter_by(email=email).first()
-
-
-
+        session = session_factory()
+        query = session.query(User).filter_by(email=email).first()
+        return query
