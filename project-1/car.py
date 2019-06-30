@@ -40,3 +40,13 @@ class Car(Base):
         session = session_factory()
         query = session.query(Car).filter_by(model=model).first()
         return query
+
+    @classmethod
+    def find_by_type(cls, type):
+        session = session_factory()
+        return session.query(Car).filter_by(type=type).all()
+
+    @classmethod
+    def find_by_number_of_passanger_seats(cls, passenger_seats):
+        session = session_factory()
+        return session.query(Car).filter_by(passenger_seats=passenger_seats).all()

@@ -1,0 +1,11 @@
+version: '3'
+services: 
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    env_file: 
+      - env-postgres.list
+    volumes: 
+      - ~/python-projects/python-psql/psql/.data:/var/lib/postgresql/data
+    ports: 
+      - '5432:5432'
